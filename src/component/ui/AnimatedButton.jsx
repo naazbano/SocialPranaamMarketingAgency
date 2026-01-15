@@ -1,0 +1,174 @@
+import React from 'react';
+import styled from 'styled-components';
+
+const AnimatedButton = ({ text, onClick, children }) => {
+  return (
+    <StyledWrapper>
+      <button className="button" onClick={onClick}>
+        <div className="dots_border" />
+        <span className="text_button text-nowrap flex items-center gap-2">
+          {/* Render text prop IF it exists, otherwise just render children */}
+          {text}
+          {children}
+        </span>
+      </button>
+    </StyledWrapper>
+  );
+}
+const StyledWrapper = styled.div`
+  .button {
+    --black-700: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+    --border_radius: 9999px;
+    --transtion: 0.3s ease-in-out;
+    --offset: 2px;
+
+    cursor: pointer;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    transform-origin: center;
+
+    padding: 1rem 2rem ;
+    background: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+
+    border: none;
+    border-radius: var(--border_radius);
+    transform: scale(calc(1 + (var(--active, 0) * 0.1)));
+
+    transition: transform var(--transtion);
+  }
+
+  .button::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+    border-radius: var(--border_radius);
+    /* Remove the outer ring (box-shadow) on hover/focus */
+    box-shadow: inset 0 0.5px hsl(0, 0%, 100%), inset 0 -1px 2px 0 hsl(0, 0%, 0%);
+    /* 0px 4px 10px -4px hsla(0 0% 0% / calc(1 - var(--active, 0))),
+      0 0 0 calc(var(--active, 0) * 0.375rem) hsl(260 97% 50% / 0.75); */
+    transition: all var(--transtion);
+    z-index: 0;
+  }
+
+  .button:is(:hover, :focus-visible) {
+    --active: 1;
+  }
+  .button:active {
+    transform: scale(1);
+  }
+
+  .button .dots_border {
+    --size_border: calc(100% + 2px);
+
+    overflow: hidden;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    width: var(--size_border);
+    height: var(--size_border);
+    background-color: transparent;
+
+    border-radius: var(--border_radius);
+    z-index: -10;
+  }
+
+  .button .dots_border::before {
+    content: "";
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transform-origin: left;
+    transform: rotate(0deg);
+
+    width: 100%;
+    height: 2rem;
+    background-color: white;
+
+    mask: linear-gradient(transparent 0%, white 120%);
+    animation: rotate 2s linear infinite;
+  }
+
+  @keyframes rotate {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .button .sparkle {
+    position: relative;
+    z-index: 10;
+
+    width: 1.75rem;
+  }
+
+  .button .sparkle .path {
+    fill: currentColor;
+    stroke: currentColor;
+
+    transform-origin: center;
+
+ 
+  }
+
+  .button:is(:hover, :focus) .sparkle .path {
+    animation: path 1.5s linear 0.5s infinite;
+  }
+
+  .button .sparkle .path:nth-child(1) {
+    --scale_path_1: 1.2;
+  }
+  .button .sparkle .path:nth-child(2) {
+    --scale_path_2: 1.2;
+  }
+  .button .sparkle .path:nth-child(3) {
+    --scale_path_3: 1.2;
+  }
+
+  @keyframes path {
+    0%,
+    34%,
+    71%,
+    100% {
+      transform: scale(1);
+    }
+    17% {
+      transform: scale(var(--scale_path_1, 1));
+    }
+    49% {
+      transform: scale(var(--scale_path_2, 1));
+    }
+    83% {
+      transform: scale(var(--scale_path_3, 1));
+    }
+  }
+
+  .button .text_button {
+    position: relative;
+    z-index: 10;
+
+    background-image: linear-gradient(
+      180deg,
+      hsla(0 0% 100% / 100%) 100%,
+      hsla(0 0% 100% / var(--active, 0)) 120%
+    );
+    background-clip: text;
+
+    font-size: 1rem;
+
+  }`;
+
+export default AnimatedButton;

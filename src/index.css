@@ -1,0 +1,416 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 47.4% 11.2%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer utilities {
+  .gradient-text {
+    background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .gradient-bg {
+    background: linear-gradient(135deg, #9333ea 0%, #7c3aed 100%);
+  }
+  
+  .card-gradient {
+    background: linear-gradient(145deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+}
+
+/* Custom animations */
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes threadWiggle {
+  0%, 100% { filter: blur(0px) opacity(0.5); }
+  50% { filter: blur(2px) opacity(0.2); }
+}
+@keyframes threadFade {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.1; }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fadeInUp {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.animate-slideInRight {
+  animation: slideInRight 0.8s ease-out forwards;
+}
+
+.animate-scaleIn {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+
+/* Stagger animation delays */
+.animate-delay-100 {
+  animation-delay: 0.1s;
+}
+
+.animate-delay-200 {
+  animation-delay: 0.2s;
+}
+
+.animate-delay-300 {
+  animation-delay: 0.3s;
+}
+
+.animate-delay-400 {
+  animation-delay: 0.4s;
+}
+
+.animate-delay-500 {
+  animation-delay: 0.5s;
+}
+
+.animate-delay-600 {
+  animation-delay: 0.6s;
+}
+
+.animate-delay-700 {
+  animation-delay: 0.7s;
+}
+
+.animate-delay-800 {
+  animation-delay: 0.8s;
+}
+
+.animate-delay-900 {
+  animation-delay: 0.9s;
+}
+
+@font-face {
+  font-family: 'Trajan Pro';
+  src: url('/fonts/TrajanPro-Regular.woff2') format('woff2'),
+       url('/fonts/TrajanPro-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Trajan Pro';
+  src: url('/fonts/TrajanPro-Bold.woff2') format('woff2'),
+       url('/fonts/TrajanPro-Bold.otf') format('opentype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Poppins';
+  src: url('/fonts/Poppins-Regular.woff2') format('woff2'),
+       url('/fonts/Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+html, body {
+  font-family: 'Trajan Pro', serif !important;
+}
+
+.new-text-trajan-pro {
+  font-family: 'Trajan Pro', serif !important;
+}
+
+.font-poppins {
+  font-family: 'Poppins' ,sans-serif !important;
+
+}
+.bg-purple-gradient {
+  background: linear-gradient(90deg, #2D0054 0%, #552D91 100%);
+}
+
+.bg-purple-opposite-gradient {
+  background: linear-gradient(90deg,#552D91 0%, #2D0054 100%);
+}
+.text-sm, .text-xs {
+  font-family: 'Poppins' ,sans-serif !important;
+}
+.silver-gradient-text {
+  background: linear-gradient(180deg, #E3E3E3 40%, #a6a6a6 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.bg-purple-90 {
+  background: linear-gradient(90deg, #2D0054 0%, #552D91 100%);
+}
+
+.btn-orange-gradient {
+  background: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+  color: white;
+}
+.custom-orange-gradient {
+  background: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+  color: white;
+}
+
+.text-orange-gradient {
+  background: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+.text-outline {
+  text-shadow: 1px 1px 1px white;
+}
+
+
+.text-shadow-orange {
+  text-shadow: 1px 1px 1px #FF7A00;
+}
+
+
+@keyframes scroll-up {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-50%);
+  }
+}
+
+.infinite-scroll-up {
+  animation: scroll-up 10s linear infinite;
+}
+
+.infinite-scroll-vertical {
+  animation: scroll-up 30s linear infinite
+}
+
+.tilt-clip {
+  clip-path: polygon(0 0%, 100% 0, 100% 100%, 0 100%);
+}
+
+.tilt-left {
+  transform: rotate(-18deg);
+}
+
+/* For Chrome, Edge, Safari */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  background: #3b0764; /* purple-900 */
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #a78bfa; /* purple-400 */
+  border-radius: 8px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #7c3aed; /* purple-600 */
+}
+
+/* For Firefox */
+.custom-scrollbar {
+  scrollbar-color: #a78bfa #3b0764;
+  scrollbar-width: thin;
+}
+.hero-bg {
+  background-image: url('/Photos-uploads/');
+  background-size: contain;
+  background-position:bottom;
+  background-repeat: no-repeat;
+  z-index: 1;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between; /* Items go to edges, space fills between */
+  align-items: center;            /* (optional) vertically center */
+}
+
+
+.profile-balloon {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  background: #FF7A00;
+  border-top-left-radius: 110px;
+  border-top-right-radius: 110px;
+  border-bottom-left-radius: 132px;
+  border-bottom-right-radius: 1px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.profile-balloon img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 110px;
+  border-bottom-left-radius: 132px;
+  border-bottom-right-radius: 100px;
+  position: absolute;
+  bottom: 0;
+}
+
+.hide-scrollbar {
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+.hide-scrollbar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, Opera */
+}
+
+
+.bg-silver-gradient {
+  background: linear-gradient(90deg, #E3E3E3 40%, #a6a6a6 100%);
+}
+
+
+@layer base {
+  * {
+    /* Tailwind v4 mein variables ko brackets ke sath likha jata hai */
+    @apply border-[--border];
+  }
+
+  body {
+    @apply bg-black text-white;
+   
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,111 @@
+/* AutoMarquee.css - Converted to valid CSS */
+.auto-marquee-root {
+	align-content: center;
+	height: 100%;
+	display: grid;
+	gap: 4vw;
+	overflow: hidden;
+	position: relative;
+	z-index: 1;
+    background: transparent;
+	/* Add any background you want here, not on body */
+}
+
+.auto-marquee-root .marquee {
+	--marquee--colour: white;
+	--marquee--repeat-count: 6;
+	--marquee--base-duration: 1s;
+	--marquee--repeat-size: calc(100% / var(--marquee--repeat-count));
+	--marquee--double-size: calc(var(--marquee--repeat-size) * 2);
+	--marquee--duration: calc(var(--marquee--base-duration) * var(--char-count, 20));
+    
+	overflow: hidden;
+	width: 240%;
+	margin-left: -22%;
+	transform: rotate(-7deg);
+	background: var(--marquee--colour);
+	color: #FF7A00;
+}
+
+.auto-marquee-root .marquee:nth-child(even) {
+	--marquee--direction: -2;
+	transform: rotate(4deg);
+	background:#FF7A00;
+	color:white;
+}
+
+.auto-marquee-root .marquee p {
+	transform: translateY(0.05em);
+	font-weight: bold;
+	margin: 0;
+	display: flex;
+	gap: 0.5em;
+	line-height: 1.8;
+	font-size: clamp(1.8rem, 6vw, 2.2rem);
+	font-family:'trajan pro' ,sans-serif !important;
+	position: relative;
+}
+
+.auto-marquee-root .marquee p::after {
+	content: "*";
+	transform: translateY(0.175em);
+}
+
+.auto-marquee-root .marquee p::before {
+	content: "";
+}
+
+.auto-marquee-root .marquee--inner {
+	width: max-content;
+	display: flex;
+	text-transform: uppercase;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.auto-marquee-root .marquee--inner {
+		animation: marquee var(--marquee--duration) infinite linear, reduce-marquee var(--marquee--duration) infinite linear paused;
+		animation-composition: add;
+	}
+	.auto-marquee-root .marquee--inner:hover {
+		animation-play-state: running;
+	}
+}
+
+@keyframes marquee {
+	from {
+		transform: translateX(calc(((-1 * var(--marquee--double-size)) - (var(--marquee--double-size) * var(--marquee--direction, 1)))));
+	}
+	to {
+		transform: translateX(calc(var(--marquee--double-size) * -1));
+	}
+}
+
+@keyframes reduce-marquee {
+	from {
+		transform: translateX(calc(var(--marquee--repeat-size) * var(--marquee--direction, 1)));
+	}
+	to {
+		transform: translateX(calc(var(--marquee--double-size) * -1));
+	}
+}
+
+.auto-marquee-root button {
+	position: absolute;
+	top: 20px;
+	left: 20px;
+}
+
+.auto-marquee-root button[aria-pressed="true"] {
+	filter: invert(1);
+}
+
+.auto-marquee-root [aria-pressed="true"] + * .auto-marquee-root .marquee--inner {
+	animation-play-state: paused !important;
+} 
+
+.custom-orange-gradient {
+	background: linear-gradient(180deg, #FF7A00 0%, #FF3C00 100%);
+	color: white;
+  }
+  
+  
