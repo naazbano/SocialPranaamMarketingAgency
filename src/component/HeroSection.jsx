@@ -11,7 +11,7 @@ const HeroSection = () => {
     <section className="relative w-full overflow-hidden pt-10 sm:pt-16 lg:pt-20 pb-10">
       
       {/* BACKGROUND AI IMAGE - Adjusted opacity and size for mobile readability */}
-      <div className="absolute top-0 right-0 w-full lg:w-[60%] h-full z-0 opacity-40 sm:opacity-60 lg:opacity-80 pointer-events-none hidden md:block">
+      <div className="absolute top-0 right-0 w-full lg:w-[60%] h-full z-0 opacity-50 pointer-events-none hidden md:block">
         <motion.img 
           initial={{ opacity: 0, x: 50 }}
           animate={{ opacity: 0.8, x: 0 }}
