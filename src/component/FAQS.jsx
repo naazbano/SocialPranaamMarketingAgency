@@ -3,10 +3,45 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiPlus, FiMinus } from 'react-icons/fi';
 
-// ... faqData remains same
+const faqData = [
+  {
+    question: "What is Social Pranaam?",
+    answer:
+      "Social Pranaam is an AI-Powered Marketing Agency that helps brands grow through data-driven strategies, AI-assisted content, automation, and performance marketing. We design end-to-end marketing systems that deliver measurable results and improved ROI."
+  },
+  {
+    question: "How does Social Pranaam use AI in marketing?",
+    answer:
+      "We leverage AI to analyze markets, predict audience behavior, optimize ad creatives and budgets, automate lead follow-ups, and generate real-time performance insights — ensuring smarter, faster, and more efficient marketing campaigns."
+  },
+  {
+    question: "What services does Social Pranaam offer?",
+    answer: "Our AI-driven services include:",
+    point: [
+      "AI Marketing Systems for Local Businesses",
+      "Performance Marketing",
+      "Social Media Management",
+      "Funnel & Automation Setup",
+      "Website & Landing Pages",
+      "Brand Growth Consulting"
+    ]
+  },
+  {
+    question: "Which businesses can benefit from Social Pranaam?",
+    answer:
+      "Any business looking to scale efficiently—from local service providers to e-commerce brands—can benefit from our AI-driven growth systems and automated lead nurturing."
+  },
+  {
+    question: "How do I get started?",
+    answer:
+      "Getting started is simple. Book a free growth consultation on our website, and our team will assess your marketing, identify gaps, and create a custom AI-powered strategy to attract leads, improve conversions, and scale growth."
+  }
+];
+
 
 const FAQS = () => {
   const [activeId, setActiveId] = useState(0);
+
 
   return (
     <section className="py-12 md:py-20 px-4 sm:px-6 md:px-10 max-w-7xl mx-auto relative overflow-hidden">
@@ -68,7 +103,7 @@ const FAQS = () => {
                   onClick={() => setActiveId(activeId === index ? -1 : index)}
                   className="w-full flex items-center justify-between text-left group pt-2"
                 >
-                 <span className={`text-md md:text-lg font-bold transition-colors duration-300 ${activeId === index ? 'text-white/90' : 'text-white/80 hover:text-white'}`}>
+                                    <span className={`text-md md:text-lg font-bold transition-colors duration-300 ${activeId === index ? 'text-white/90' : 'text-white/80 hover:text-white'}`}>
                     {item.question}
                   </span>
                   <div className={`w-7 h-7 md:w-8 md:h-8 rounded-full border flex items-center justify-center transition-all duration-300 flex-shrink-0 ml-4 ${activeId === index ? 'bg-orange-500 border-orange-500 text-black' : 'border-white/10 text-white'}`}>
