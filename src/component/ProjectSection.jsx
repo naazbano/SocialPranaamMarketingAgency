@@ -1,9 +1,10 @@
-import React from 'react'
-import { useState } from 'react'
+
+import React, { useState } from 'react'
 import { FiArrowUpRight } from 'react-icons/fi'; 
 import ProjectCard from './ProjectCard';
 import AnimatedButton from '../component/ui/AnimatedButton';
 import { Brain, Layout, BarChart3, Bot, PieChart } from 'lucide-react'
+
 const projectsData = [
   { 
     id: 1, 
@@ -77,53 +78,50 @@ const projectsData = [
   },
 ];
 
+
 const ProjectSection = () => {
-    
-      // State to manage how many items to show
-      const [showAll, setShowAll] = useState(false);
-      // Logic to determine which projects to display
-      const displayedProjects = showAll ? projectsData : projectsData.slice(0, 3);
+    const [showAll, setShowAll] = useState(false);
+    const displayedProjects = showAll ? projectsData : projectsData.slice(0, 3);
+
   return (
-   <>
-    <div className="py-20 px-6 md:px-12 overflow-hidden max-w-7xl">
-
+    <section className="py-20 px-4 sm:px-8 md:px-12 max-w-7xl mx-auto">
       {/* Projects Header */}
-         <div className="grid md:grid-cols-2 gap-10 items-start mb-20">
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="text-orange-500 text-xs">✦</span>
-              <span className="text-white uppercase tracking-[0.4em] text-[10px] font-semibold opacity-80">Projects</span>
-            </div>
-            <h2 className="text-3xl sm:text-3xl md:text-4xl  font-black mb-6 lg:mb-8 leading-tight">
-              <span  className="text-transparent   bg-clip-text silver-gradient-text font-black">  Our Core  </span> 
-              <span  className="text-orange-gradient  font-black"> Pillars</span>
-         
-            </h2>
+      <div className="grid md:grid-cols-2 gap-8 lg:gap-16 items-start mb-16 lg:mb-24">
+        <div className="text-center md:text-left">
+          <div className="flex items-center justify-center md:justify-start gap-2 mb-4">
+            <span className="text-orange-500 text-xs">✦</span>
+            <span className="text-white uppercase tracking-[0.4em] text-[10px] font-semibold opacity-80">Projects</span>
           </div>
-
-          <div className="md:mt-14">
-            <p className="text-base sm:text-lg lg:text-xl font-poppins text-gray-300 mb-6 lg:mb-8 leading-relaxed animate-fadeInUp animate-delay-200">
-              From intelligent planning to automated execution and data-driven insights, our core pillars power scalable growth.
-            </p>
-          </div>
+          <h2 className="text-3xl sm:text-3xl md:text-4xl  font-black leading-tight">
+            <span className="text-transparent bg-clip-text silver-gradient-text">Our Core</span> 
+            <br className="sm:hidden" />
+            <span className="text-orange-gradient"> Pillars</span>
+          </h2>
         </div>
 
-        {/* Projects List */}
-    <div className="space-y-10">
-          {displayedProjects.map((project, index) => (
+        <div className="md:mt-12 text-center md:text-left">
+          <p className="text-base sm:text-lg font-poppins text-gray-300 leading-relaxed max-w-xl mx-auto md:ml-0">
+            From intelligent planning to automated execution and data-driven insights, our core pillars power scalable growth.
+          </p>
+        </div>
+      </div>
+
+      {/* Projects List */}
+      <div className="space-y-12 md:space-y-24">
+        {displayedProjects.map((project, index) => (
+          <div key={project.id} className="relative">
             <ProjectCard 
-              key={project.id} 
               project={project} 
-              index={index} // Passed for the circle number
+              index={index} 
               isReverse={index % 2 !== 0} 
             />
-          ))}
-        </div>
+          </div>
+        ))}
+      </div>
 
-        {/* Dynamic View All Projects Button */}
-      {/* Button */}
-        {projectsData.length > 3 && (
-          <div className="flex justify-center mt-20">
+      {/* Dynamic View All Projects Button */}
+      {projectsData.length > 3 && (
+         <div className="flex justify-center mt-20">
             <AnimatedButton 
               onClick={() => setShowAll(!showAll)} 
               text={showAll ? "Show Less" : "View All Pillars"}
@@ -131,11 +129,9 @@ const ProjectSection = () => {
               <FiArrowUpRight className={`text-xl transition-transform ${showAll ? 'rotate-180' : ''}`} />
             </AnimatedButton>
           </div>
-        )}
-
-    </div>
-   </>
+      )}
+    </section>
   )
 }
 
-export default ProjectSection
+export default ProjectSection;

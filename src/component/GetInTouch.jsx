@@ -22,7 +22,7 @@ const GetInTouch = () => {
             </span>
           </div>
 
-          <h2 className="text-3xl sm:text-3xl md:text-4xl  font-black mb-6 lg:mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-3xl md:text-4xl    font-black mb-6 lg:mb-8 leading-tight">
             <span className='block text-transparent bg-clip-text silver-gradient-text font-black'> Ready to Grow </span>
             <span className="text-orange-500 pr-2"> Smarter with</span>
             <span className="silver-gradient-text "> AI?</span>

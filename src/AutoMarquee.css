@@ -1,39 +1,32 @@
-/* AutoMarquee.css - Converted to valid CSS */
 .auto-marquee-root {
-	align-content: center;
-	height: 100%;
-	display: grid;
-	gap: 4vw;
-	overflow: hidden;
-	position: relative;
-	z-index: 1;
+    align-content: center;
+    display: grid;
+    gap: 20px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
     background: transparent;
-	/* Add any background you want here, not on body */
+    padding: 60px 0;
 }
 
 .auto-marquee-root .marquee {
-	--marquee--colour: white;
-	--marquee--repeat-count: 6;
-	--marquee--base-duration: 1s;
-	--marquee--repeat-size: calc(100% / var(--marquee--repeat-count));
-	--marquee--double-size: calc(var(--marquee--repeat-size) * 2);
-	--marquee--duration: calc(var(--marquee--base-duration) * var(--char-count, 20));
+    --marquee--colour: white;
+    --marquee--repeat-count: 6;
+    --marquee--base-duration: 0.8s; /* Faster for better feel */
+    --marquee--duration: calc(var(--marquee--base-duration) * var(--char-count, 20));
     
-	overflow: hidden;
-	width: 240%;
-	margin-left: -22%;
-	transform: rotate(-7deg);
-	background: var(--marquee--colour);
-	color: #FF7A00;
+    overflow: hidden;
+    width: 150%; /* Reduced from 240% for better mobile handling */
+    margin-left: -25%;
+    transform: rotate(-3deg); /* Subtle rotation for mobile */
+    background: var(--marquee--colour);
+    display: flex;
 }
 
 .auto-marquee-root .marquee:nth-child(even) {
-	--marquee--direction: -2;
-	transform: rotate(4deg);
-	background:#FF7A00;
-	color:white;
+    transform: rotate(2deg); /* Subtle rotation for mobile */
+    background: #FF7A00;
 }
-
 .auto-marquee-root .marquee p {
 	transform: translateY(0.05em);
 	font-weight: bold;
@@ -54,30 +47,36 @@
 .auto-marquee-root .marquee p::before {
 	content: "";
 }
-
 .auto-marquee-root .marquee--inner {
-	width: max-content;
-	display: flex;
-	text-transform: uppercase;
+    width: max-content;
+    display: flex;
+    text-transform: uppercase;
+    padding: 10px 0;
 }
 
 @media (prefers-reduced-motion: no-preference) {
-	.auto-marquee-root .marquee--inner {
-		animation: marquee var(--marquee--duration) infinite linear, reduce-marquee var(--marquee--duration) infinite linear paused;
-		animation-composition: add;
-	}
-	.auto-marquee-root .marquee--inner:hover {
-		animation-play-state: running;
-	}
+    .auto-marquee-root .marquee--inner {
+        animation: marquee var(--marquee--duration) infinite linear;
+    }
+}
+
+/* Desktop rotation */
+@media (min-width: 1024px) {
+    .auto-marquee-root .marquee {
+        width: 200%;
+        transform: rotate(-7deg);
+    }
+}
+
+@media (min-width: 1024px) {
+    .auto-marquee-root .marquee:nth-child(even) {
+        transform: rotate(4deg);
+    }
 }
 
 @keyframes marquee {
-	from {
-		transform: translateX(calc(((-1 * var(--marquee--double-size)) - (var(--marquee--double-size) * var(--marquee--direction, 1)))));
-	}
-	to {
-		transform: translateX(calc(var(--marquee--double-size) * -1));
-	}
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); } /* Standard infinite scroll logic */
 }
 
 @keyframes reduce-marquee {
